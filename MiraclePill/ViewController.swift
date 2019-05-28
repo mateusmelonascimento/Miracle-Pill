@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textFieldCity: UITextField!
     @IBOutlet weak var textFieldState: UITextField!
     @IBOutlet weak var textFieldCountry: UITextField!
-    
+    @IBOutlet weak var imageViewBuyNow: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textFieldCity.delegate = self
         textFieldState.delegate = self
         textFieldCountry.delegate = self
+        
+        
+        // Add image view
+        setImageViewClick()
     }
     
     // MARK: UITextFieldDelegate
@@ -69,5 +73,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         UIView.commitAnimations()
+    }
+    
+    // MARK: Actions
+    @objc func onBuyNowClick() {
+        let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+        print("Imageview Clicked")
+    }
+    
+    // MARK: My functions
+    private func setImageViewClick() {
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(onBuyNowClick))
+        imageViewBuyNow.isUserInteractionEnabled = true
+        imageViewBuyNow.addGestureRecognizer(singleTap)
     }
 }
