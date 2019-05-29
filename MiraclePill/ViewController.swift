@@ -77,13 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @objc func onBuyNowClick() {
-        let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true)
-        print("Imageview Clicked")
+        showBuyAlertController()
     }
     
     // MARK: My functions
@@ -91,5 +85,44 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(onBuyNowClick))
         imageViewBuyNow.isUserInteractionEnabled = true
         imageViewBuyNow.addGestureRecognizer(singleTap)
+    }
+    
+    // Create an UIAlertController containing a custom view
+    func showBuyAlertController() {
+        // Create the alert and custom view
+        let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
+        let customView = UIView()
+        
+        // Add custom view to alert container
+        alertController.view.addSubview(customView)
+
+        // Set the alert up
+        alertController.view.translatesAutoresizingMaskIntoConstraints = false
+        alertController.view.heightAnchor.constraint(equalToConstant: 380).isActive = true
+        
+        // Set the custom view up
+        customView.translatesAutoresizingMaskIntoConstraints = false
+        customView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
+        customView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        customView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        customView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+//        customView.backgroundColor = .gray
+
+        // Create button actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let buyAction = UIAlertAction(title: "Buy", style: .default) { (action) in
+            self.buyMiraclePill()
+        }
+    
+        // Add button actions
+        alertController.addAction(cancelAction)
+        alertController.addAction(buyAction)
+        
+        // Show the alert
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func buyMiraclePill() {
+        print("Bought")
     }
 }
