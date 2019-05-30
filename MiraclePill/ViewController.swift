@@ -144,9 +144,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Set the alert up
         alertController.view.translatesAutoresizingMaskIntoConstraints = false
-        alertController.view.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        alertController.view.heightAnchor.constraint(equalToConstant: 240).isActive = true
+        alertController.view.widthAnchor.constraint(equalToConstant: 280).isActive = true
         
         // Set the custom view name up
+        name.adjustsFontSizeToFitWidth = false
+        name.lineBreakMode = .byTruncatingMiddle
         name.textAlignment = .left
         name.textColor = .white
         name.font = UIFont(name: "Avenir-Light", size: 15.0)
