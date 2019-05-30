@@ -30,7 +30,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textFieldState.delegate = self
         textFieldCountry.delegate = self
         
-        
         // Add image view
         setImageViewClick()
     }
@@ -88,32 +87,137 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Create an UIAlertController containing a custom view
+//    func showBuyAlertController() {
+//        // Create the alert and custom view
+//        let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
+//        let customView = UILabel()
+//
+//        // Add custom view to alert container
+//        alertController.view.addSubview(customView)
+//
+//        // Set the alert up
+//        alertController.view.translatesAutoresizingMaskIntoConstraints = false
+//        alertController.view.heightAnchor.constraint(equalToConstant: 380).isActive = true
+//
+//        // Set the custom view up
+//        customView.translatesAutoresizingMaskIntoConstraints = false
+//        customView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
+//        customView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+//        customView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+//        customView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+//        customView.text = textFieldName.text
+//        customView.backgroundColor = .gray
+//
+//        // Create button actions
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        let buyAction = UIAlertAction(title: "Buy", style: .default) { (action) in
+//            self.buyMiraclePill()
+//        }
+//
+//        // Add button actions
+//        alertController.addAction(cancelAction)
+//        alertController.addAction(buyAction)
+//
+//        // Show the alert
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+    
     func showBuyAlertController() {
-        // Create the alert and custom view
+        // Create the alert
         let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
-        let customView = UIView()
         
-        // Add custom view to alert container
-        alertController.view.addSubview(customView)
-
+        // Create my custom views
+        let name = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        let address = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        let zipCode = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        let city = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        let state = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        let country = UILabel(frame: CGRect(x:0, y: 0, width: 250, height: 50))
+        
+        // Add custom views to alert container
+        alertController.view.addSubview(name)
+        alertController.view.addSubview(address)
+        alertController.view.addSubview(zipCode)
+        alertController.view.addSubview(city)
+        alertController.view.addSubview(state)
+        alertController.view.addSubview(country)
+        
         // Set the alert up
         alertController.view.translatesAutoresizingMaskIntoConstraints = false
-        alertController.view.heightAnchor.constraint(equalToConstant: 380).isActive = true
+        alertController.view.heightAnchor.constraint(equalToConstant: 250).isActive = true
         
-        // Set the custom view up
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        customView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
-        customView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
-        customView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        customView.heightAnchor.constraint(equalToConstant: 250).isActive = true
-//        customView.backgroundColor = .gray
+        // Set the custom view name up
+        name.textAlignment = .left
+        name.textColor = .white
+        name.font = UIFont(name: "Avenir-Light", size: 15.0)
+        name.text = "Name:  \(textFieldName.text!)"
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
+        name.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        name.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        name.backgroundColor = .gray
+        
+        // Set the custom view address up
+        address.textAlignment = .left
+        address.textColor = .white
+        address.font = UIFont(name: "Avenir-Light", size: 15.0)
+        address.text = "Address:  \(textFieldAddress.text!)"
+        address.translatesAutoresizingMaskIntoConstraints = false
+        address.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5).isActive = true
+        address.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        address.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        address.backgroundColor = .gray
+        
+        // Set the custom view zipCode up
+        zipCode.textAlignment = .left
+        zipCode.textColor = .white
+        zipCode.font = UIFont(name: "Avenir-Light", size: 15.0)
+        zipCode.text = "Zipcode:  \(textFieldZipCode.text!)"
+        zipCode.translatesAutoresizingMaskIntoConstraints = false
+        zipCode.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 5).isActive = true
+        zipCode.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        zipCode.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        zipCode.backgroundColor = .gray
 
+        // Set the custom view city up
+        city.textAlignment = .left
+        city.textColor = .white
+        city.font = UIFont(name: "Avenir-Light", size: 15.0)
+        city.text = "City:  \(textFieldCity.text!)"
+        city.translatesAutoresizingMaskIntoConstraints = false
+        city.topAnchor.constraint(equalTo: zipCode.bottomAnchor, constant: 5).isActive = true
+        city.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        city.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        city.backgroundColor = .gray
+
+        // Set the custom view state up
+        state.textAlignment = .left
+        state.textColor = .white
+        state.font = UIFont(name: "Avenir-Light", size: 15.0)
+        state.text = "State:  \(textFieldState.text!)"
+        state.translatesAutoresizingMaskIntoConstraints = false
+        state.topAnchor.constraint(equalTo: city.bottomAnchor, constant: 5).isActive = true
+        state.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        state.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        state.backgroundColor = .gray
+
+        // Set the custom view country up
+        country.textAlignment = .left
+        country.textColor = .white
+        country.font = UIFont(name: "Avenir-Light", size: 15.0)
+        country.text = "Address:  \(textFieldCountry.text!)"
+        country.translatesAutoresizingMaskIntoConstraints = false
+        country.topAnchor.constraint(equalTo: state.bottomAnchor, constant: 5).isActive = true
+        country.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
+        country.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
+        country.backgroundColor = .gray
+        
         // Create button actions
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let buyAction = UIAlertAction(title: "Buy", style: .default) { (action) in
             self.buyMiraclePill()
         }
-    
+        
         // Add button actions
         alertController.addAction(cancelAction)
         alertController.addAction(buyAction)
@@ -124,5 +228,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     private func buyMiraclePill() {
         print("Bought")
+//        var
+//        if (textFieldName.text.isEmpty) {
+//            textFieldName.seterror
+//        }
+        
+        textFieldName.delegate = self
+        textFieldAddress.delegate = self
+        textFieldZipCode.delegate = self
+        textFieldCity.delegate = self
+        textFieldState.delegate = self
+        textFieldCountry.delegate = self
     }
 }
