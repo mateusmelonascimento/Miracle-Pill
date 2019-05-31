@@ -86,42 +86,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         imageViewBuyNow.addGestureRecognizer(singleTap)
     }
     
-    // Create an UIAlertController containing a custom view
-//    func showBuyAlertController() {
-//        // Create the alert and custom view
-//        let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
-//        let customView = UILabel()
-//
-//        // Add custom view to alert container
-//        alertController.view.addSubview(customView)
-//
-//        // Set the alert up
-//        alertController.view.translatesAutoresizingMaskIntoConstraints = false
-//        alertController.view.heightAnchor.constraint(equalToConstant: 380).isActive = true
-//
-//        // Set the custom view up
-//        customView.translatesAutoresizingMaskIntoConstraints = false
-//        customView.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
-//        customView.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
-//        customView.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-//        customView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        customView.text = textFieldName.text
-//        customView.backgroundColor = .gray
-//
-//        // Create button actions
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        let buyAction = UIAlertAction(title: "Buy", style: .default) { (action) in
-//            self.buyMiraclePill()
-//        }
-//
-//        // Add button actions
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(buyAction)
-//
-//        // Show the alert
-//        self.present(alertController, animated: true, completion: nil)
-//    }
-    
     func showBuyAlertController() {
         // Create the alert
         let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
@@ -158,7 +122,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         name.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
         name.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         name.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        name.backgroundColor = .gray
+        name.backgroundColor = .lightGray
         
         // Set the custom view address up
         address.textAlignment = .left
@@ -169,7 +133,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         address.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5).isActive = true
         address.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         address.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        address.backgroundColor = .gray
+        address.backgroundColor = .lightGray
         
         // Set the custom view zipCode up
         zipCode.textAlignment = .left
@@ -180,7 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         zipCode.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 5).isActive = true
         zipCode.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         zipCode.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        zipCode.backgroundColor = .gray
+        zipCode.backgroundColor = .lightGray
 
         // Set the custom view city up
         city.textAlignment = .left
@@ -191,7 +155,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         city.topAnchor.constraint(equalTo: zipCode.bottomAnchor, constant: 5).isActive = true
         city.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         city.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        city.backgroundColor = .gray
+        city.backgroundColor = .lightGray
 
         // Set the custom view state up
         state.textAlignment = .left
@@ -202,7 +166,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         state.topAnchor.constraint(equalTo: city.bottomAnchor, constant: 5).isActive = true
         state.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         state.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        state.backgroundColor = .gray
+        state.backgroundColor = .lightGray
 
         // Set the custom view country up
         country.textAlignment = .left
@@ -213,7 +177,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         country.topAnchor.constraint(equalTo: state.bottomAnchor, constant: 5).isActive = true
         country.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         country.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        country.backgroundColor = .gray
+        country.backgroundColor = .lightGray
         
         // Create button actions
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -231,16 +195,44 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     private func buyMiraclePill() {
         print("Bought")
-//        var
+        createSpinnerView()
+        
 //        if (textFieldName.text.isEmpty) {
 //            textFieldName.seterror
 //        }
+//
+//        textFieldName.delegate = self
+//        textFieldAddress.delegate = self
+//        textFieldZipCode.delegate = self
+//        textFieldCity.delegate = self
+//        textFieldState.delegate = self
+//        textFieldCountry.delegate = self
+    }
+    
+    private func createSpinnerView() {
+        let child = SpinnerViewController()
         
-        textFieldName.delegate = self
-        textFieldAddress.delegate = self
-        textFieldZipCode.delegate = self
-        textFieldCity.delegate = self
-        textFieldState.delegate = self
-        textFieldCountry.delegate = self
+        // Add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        // Wait two seconds to simulate some work happening
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            // Then remove the spinner view controller
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+            
+            // Show action completed
+            self.showUIAlert(alertTitlte: "Congratulations", alertMessage: "You have just bought the miracle pills.", buttonTitle: "Ok")
+        }
+    }
+    
+    private func showUIAlert(alertTitlte: String, alertMessage: String, buttonTitle: String) {
+        let alert = UIAlertController(title: alertTitlte, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

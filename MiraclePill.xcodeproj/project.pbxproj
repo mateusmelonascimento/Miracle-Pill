@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2756311522A149BC007D7E40 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756311422A149BC007D7E40 /* SpinnerViewController.swift */; };
 		27F5C7702294D780002CFBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5C76F2294D780002CFBEC /* AppDelegate.swift */; };
 		27F5C7722294D780002CFBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5C7712294D780002CFBEC /* ViewController.swift */; };
 		27F5C7752294D780002CFBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27F5C7732294D780002CFBEC /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2756311422A149BC007D7E40 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		27F5C76C2294D780002CFBEC /* MiraclePill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiraclePill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F5C76F2294D780002CFBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27F5C7712294D780002CFBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				27F5C76F2294D780002CFBEC /* AppDelegate.swift */,
 				27F5C7712294D780002CFBEC /* ViewController.swift */,
+				2756311422A149BC007D7E40 /* SpinnerViewController.swift */,
 				27F5C7732294D780002CFBEC /* Main.storyboard */,
 				27F5C7762294D785002CFBEC /* Assets.xcassets */,
 				27F5C7782294D785002CFBEC /* LaunchScreen.storyboard */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27F5C7722294D780002CFBEC /* ViewController.swift in Sources */,
+				2756311522A149BC007D7E40 /* SpinnerViewController.swift in Sources */,
 				27F5C7702294D780002CFBEC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
