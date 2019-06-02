@@ -76,7 +76,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     @objc func onBuyNowClick() {
-        showBuyAlertController()
+        if let data = validateFields() {
+            showBuyAlertController(purchaseInformation: data)
+        }
     }
     
     // MARK: My functions
@@ -86,7 +88,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         imageViewBuyNow.addGestureRecognizer(singleTap)
     }
     
-    func showBuyAlertController() {
+    func showBuyAlertController(purchaseInformation: PurchaseInformation) {
         // Create the alert
         let alertController = UIAlertController(title: "Information", message: nil, preferredStyle: .alert)
         
@@ -117,7 +119,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         name.textAlignment = .left
         name.textColor = .white
         name.font = UIFont(name: "Avenir-Light", size: 15.0)
-        name.text = "Name:  \(textFieldName.text!)"
+        name.text = "Name:  \(purchaseInformation.name)"
         name.translatesAutoresizingMaskIntoConstraints = false
         name.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
         name.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -128,7 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         address.textAlignment = .left
         address.textColor = .white
         address.font = UIFont(name: "Avenir-Light", size: 15.0)
-        address.text = "Address:  \(textFieldAddress.text!)"
+        address.text = "Address:  \(purchaseInformation.address)"
         address.translatesAutoresizingMaskIntoConstraints = false
         address.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5).isActive = true
         address.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -139,7 +141,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         zipCode.textAlignment = .left
         zipCode.textColor = .white
         zipCode.font = UIFont(name: "Avenir-Light", size: 15.0)
-        zipCode.text = "Zipcode:  \(textFieldZipCode.text!)"
+        zipCode.text = "Zipcode:  \(purchaseInformation.zipcode)"
         zipCode.translatesAutoresizingMaskIntoConstraints = false
         zipCode.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 5).isActive = true
         zipCode.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -150,7 +152,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         city.textAlignment = .left
         city.textColor = .white
         city.font = UIFont(name: "Avenir-Light", size: 15.0)
-        city.text = "City:  \(textFieldCity.text!)"
+        city.text = "City:  \(purchaseInformation.city)"
         city.translatesAutoresizingMaskIntoConstraints = false
         city.topAnchor.constraint(equalTo: zipCode.bottomAnchor, constant: 5).isActive = true
         city.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -161,7 +163,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         state.textAlignment = .left
         state.textColor = .white
         state.font = UIFont(name: "Avenir-Light", size: 15.0)
-        state.text = "State:  \(textFieldState.text!)"
+        state.text = "State:  \(purchaseInformation.state)"
         state.translatesAutoresizingMaskIntoConstraints = false
         state.topAnchor.constraint(equalTo: city.bottomAnchor, constant: 5).isActive = true
         state.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -172,7 +174,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         country.textAlignment = .left
         country.textColor = .white
         country.font = UIFont(name: "Avenir-Light", size: 15.0)
-        country.text = "Address:  \(textFieldCountry.text!)"
+        country.text = "Address:  \(purchaseInformation.country)"
         country.translatesAutoresizingMaskIntoConstraints = false
         country.topAnchor.constraint(equalTo: state.bottomAnchor, constant: 5).isActive = true
         country.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
@@ -182,7 +184,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Create button actions
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let buyAction = UIAlertAction(title: "Buy", style: .default) { (action) in
-            self.buyMiraclePill()
+            self.performNetworkOperation(purchaseInformation: purchaseInformation)
         }
         
         // Add button actions
@@ -191,12 +193,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Show the alert
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    private func buyMiraclePill() {
-        if let data = validateFields() {
-            performNetworkOperation(purchaseInformation: data)
-        }
     }
     
     private func createSpinnerView() {
