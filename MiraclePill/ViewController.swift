@@ -37,18 +37,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-            case textFieldName:
-                textFieldAddress.becomeFirstResponder()
-            case textFieldAddress:
-                textFieldZipCode.becomeFirstResponder()
-            case textFieldZipCode:
-                textFieldCity.becomeFirstResponder()
-            case textFieldCity:
-                textFieldState.becomeFirstResponder()
-            case textFieldState:
-                textFieldCountry.becomeFirstResponder()
-            default:
-                textField.resignFirstResponder()
+        case textFieldName:
+            textFieldAddress.becomeFirstResponder()
+        case textFieldAddress:
+            textFieldZipCode.becomeFirstResponder()
+        case textFieldZipCode:
+            textFieldCity.becomeFirstResponder()
+        case textFieldCity:
+            textFieldState.becomeFirstResponder()
+        case textFieldState:
+            textFieldCountry.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
         }
         return false
     }
@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func animateViewMoving (up:Bool, moveValue :CGFloat){
         let movementDuration:TimeInterval = 0.3
         let movement:CGFloat = (up ? -moveValue : moveValue)
-       
+        
         UIView.beginAnimations("animateView", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
         UIView.setAnimationDuration(movementDuration)
@@ -147,7 +147,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         zipCode.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         zipCode.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
         zipCode.backgroundColor = .lightGray
-
+        
         // Set the custom view city up
         city.textAlignment = .left
         city.textColor = .white
@@ -158,7 +158,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         city.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         city.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
         city.backgroundColor = .lightGray
-
+        
         // Set the custom view state up
         state.textAlignment = .left
         state.textColor = .white
@@ -169,7 +169,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         state.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
         state.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
         state.backgroundColor = .lightGray
-
+        
         // Set the custom view country up
         country.textAlignment = .left
         country.textColor = .white
@@ -221,7 +221,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func validateFields() -> PurchaseInformation? {
         do {
             let name = try textFieldName.validatedText(validationType: ValidatorType.name)
