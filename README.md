@@ -23,8 +23,4 @@ Images:
 ![alt text](https://github.com/mateusmelonascimento/Miracle-Pill/blob/master/App%20screenshots/Captura%20de%20Tela%202019-06-02%20às%2017.36.04.png)
 ![alt text](https://github.com/mateusmelonascimento/Miracle-Pill/blob/master/App%20screenshots/Captura%20de%20Tela%202019-06-02%20às%2017.35.20.png)
 ![alt text](https://github.com/mateusmelonascimento/Miracle-Pill/blob/master/App%20screenshots/Captura%20de%20Tela%202019-06-02%20às%2017.38.17.png)
-<<<<<<< HEAD
 ![alt text](https://github.com/mateusmelonascimento/Miracle-Pill/blob/master/App%20screenshots/Captura%20de%20Tela%202019-06-02%20às%2017.35.49.png)
-=======
-![alt text](https://github.com/mateusmelonascimento/Miracle-Pill/blob/master/App%20screenshots/Captura%20de%20Tela%202019-06-02%20às%2017.35.49.png)
->>>>>>> 9c68185db7049458c349aec2d9e87ae2ac410334
