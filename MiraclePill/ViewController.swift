@@ -8,6 +8,17 @@
 
 import UIKit
 
+extension UITextField {
+    func setBottomBorderOnlyWith(color: CGColor) {
+        self.borderStyle = .none
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
+}
+
 class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets reference
@@ -194,19 +205,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func buyMiraclePill() {
-        print("Bought")
-        createSpinnerView()
-        
-//        if (textFieldName.text.isEmpty) {
-//            textFieldName.seterror
-//        }
-//
-//        textFieldName.delegate = self
-//        textFieldAddress.delegate = self
-//        textFieldZipCode.delegate = self
-//        textFieldCity.delegate = self
-//        textFieldState.delegate = self
-//        textFieldCountry.delegate = self
+        if let data = validateFields() {
+            performNetworkOperation(purchaseInformation: data)
+        }
     }
     
     private func createSpinnerView() {
@@ -234,5 +235,85 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: alertTitlte, message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    func validateFields() -> PurchaseInformation? {
+        do {
+            let name = try textFieldName.validatedText(validationType: ValidatorType.name)
+            let address = try textFieldAddress.validatedText(validationType: ValidatorType.address)
+            let zipcode = try self.textFieldZipCode.validatedText(validationType: ValidatorType.zipcode)
+            let city = try textFieldCity.validatedText(validationType: ValidatorType.city)
+            let state = try textFieldState.validatedText(validationType: ValidatorType.state)
+            let country = try self.textFieldCountry.validatedText(validationType: ValidatorType.country)
+            
+            // Create Data class in order to encapsulate the information you want and perform network operation
+            return PurchaseInformation(name: name, address: address, zipcode: zipcode, city: city, state: state, country: country)
+        } catch(let error) {
+            // Show alert. Fields mandatory
+            showUIAlert(alertTitlte: "Empty field", alertMessage: (error as! ValidationError).message, buttonTitle: "Ok")
+            return nil
+        }
+    }
+    
+    private func performNetworkOperation(purchaseInformation: PurchaseInformation) {
+        // Pretend to perform network operation, like buying the miracle pills
+        createSpinnerView()
+    }
+}
+
+
+//************************ CODE FOR HANDLING VALIDATION ON TEXFLIEDS ************************
+
+// Add func to TextField in order to reduce multiple calls when coding
+extension UITextField {
+    func validatedText(validationType: ValidatorType) throws -> String {
+        let validator = VaildatorFactory.validatorFor(type: validationType)
+        return try validator.validated(self.text!)
+    }
+}
+
+protocol ValidatorConvertible {
+    func validated(_ value: String?) throws -> String
+}
+
+enum ValidatorType {
+    case name
+    case address
+    case zipcode
+    case city
+    case state
+    case country
+}
+
+// Each case represents one type of validtion. You should add case when creating another field in the code
+enum VaildatorFactory {
+    static func validatorFor(type: ValidatorType) -> ValidatorConvertible {
+        switch type {
+        case .name: return EmptyStringValidator()
+        case .address: return EmptyStringValidator()
+        case .zipcode: return EmptyStringValidator()
+        case .city: return EmptyStringValidator()
+        case .state: return EmptyStringValidator()
+        case .country: return EmptyStringValidator()
+        }
+    }
+}
+
+struct ValidationError: Error {
+    var message: String
+    
+    init(_ message: String) {
+        self.message = message
+    }
+}
+
+// Here I should create validators for all types, but I just want to create for empty texfields one
+struct EmptyStringValidator: ValidatorConvertible {
+    func validated(_ value: String?) throws -> String {
+        if (value!.isEmpty) {
+            throw ValidationError("Please, fill in all fields.")
+        } else {
+            return value!
+        }
     }
 }

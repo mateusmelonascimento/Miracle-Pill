@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2756311522A149BC007D7E40 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756311422A149BC007D7E40 /* SpinnerViewController.swift */; };
+		27F5091122A45B8800F69346 /* PurchaseInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5091022A45B8800F69346 /* PurchaseInformation.swift */; };
 		27F5C7702294D780002CFBEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5C76F2294D780002CFBEC /* AppDelegate.swift */; };
 		27F5C7722294D780002CFBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5C7712294D780002CFBEC /* ViewController.swift */; };
 		27F5C7752294D780002CFBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27F5C7732294D780002CFBEC /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		2756311422A149BC007D7E40 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		27F5091022A45B8800F69346 /* PurchaseInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseInformation.swift; sourceTree = "<group>"; };
 		27F5C76C2294D780002CFBEC /* MiraclePill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiraclePill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F5C76F2294D780002CFBEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27F5C7712294D780002CFBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27F5091222A45BA300F69346 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				27F5091022A45B8800F69346 /* PurchaseInformation.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		27F5091322A45BBC00F69346 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				2756311422A149BC007D7E40 /* SpinnerViewController.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		27F5C7632294D77F002CFBEC = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +117,10 @@
 		27F5C76E2294D780002CFBEC /* MiraclePill */ = {
 			isa = PBXGroup;
 			children = (
+				27F5091322A45BBC00F69346 /* util */,
+				27F5091222A45BA300F69346 /* model */,
 				27F5C76F2294D780002CFBEC /* AppDelegate.swift */,
 				27F5C7712294D780002CFBEC /* ViewController.swift */,
-				2756311422A149BC007D7E40 /* SpinnerViewController.swift */,
 				27F5C7732294D780002CFBEC /* Main.storyboard */,
 				27F5C7762294D785002CFBEC /* Assets.xcassets */,
 				27F5C7782294D785002CFBEC /* LaunchScreen.storyboard */,
@@ -260,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27F5C7722294D780002CFBEC /* ViewController.swift in Sources */,
+				27F5091122A45B8800F69346 /* PurchaseInformation.swift in Sources */,
 				2756311522A149BC007D7E40 /* SpinnerViewController.swift in Sources */,
 				27F5C7702294D780002CFBEC /* AppDelegate.swift in Sources */,
 			);
